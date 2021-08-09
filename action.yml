@@ -1,11 +1,11 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'site-watch'
+description: 'Watch JSON endpoints - if they change, update the repo'
+author: '@rjwnz'
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  json-urls: 
+    required: false
+    description: 'Comma separated list of anonymously accessible json endpoints'
+    default: ''
 runs:
   using: 'node12'
   main: 'dist/index.js'

@@ -1,16 +1,12 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    
+    const inputUrl: string = core.getInput('json-urls');
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const split = inputUrl ? inputUrl.split(",") : []; 
+    core.setOutput('parsed-urls', split)
   } catch (error) {
     core.setFailed(error.message)
   }
