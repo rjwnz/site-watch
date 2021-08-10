@@ -1,21 +1,18 @@
 import * as core from '@actions/core'
-import { fetchJson } from './request';
+import {fetchJson} from './request'
 
 async function run(): Promise<void> {
   try {
-    
-    const inputUrl: string = core.getInput('json-urls');
+    const inputUrl: string = core.getInput('json-urls')
 
-    const split = inputUrl ? inputUrl.split(",") : [];
-    core.info(`Split urls - now fetching ${split}`); 
+    const split = inputUrl ? inputUrl.split(',') : []
+    core.info(`Split urls - now fetching ${split}`)
 
+    const responses = await Promise.all(split.map(url => fetchJson(url)))
 
-    const responses = await Promise.all(split.map(url => fetchJson(url)));
-
-    responses.forEach(element => {
-      core.warning('Got response: ' + element);
-    });
-
+    for (const element of responses) {
+      core.warning(`Got response: ${element}`)
+    }
 
     core.setOutput('parsed-urls', split)
   } catch (error) {

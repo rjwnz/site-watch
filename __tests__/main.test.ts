@@ -4,5 +4,5 @@ import * as path from 'path'
 import {expect, test} from '@jest/globals'
 
 test('Canary', async () => {
-  await expect(true).toBe(true);
-});
+  await expect(true).toBe(true)
+})
