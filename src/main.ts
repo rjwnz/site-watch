@@ -13,7 +13,7 @@ async function run(): Promise<void> {
     const responses = await Promise.all(split.map(url => fetchJson(url)));
 
     responses.forEach(element => {
-      core.info(`Got response: ${element}`);
+      core.warning('Got response: ' + element);
     });
 
 
